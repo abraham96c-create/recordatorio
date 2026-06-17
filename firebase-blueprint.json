@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "Note": {
+      "title": "Note",
+      "description": "Represents a user's task or reminder note.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Authentication UID of the owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the note."
+        },
+        "content": {
+          "type": "string",
+          "description": "The detailed description or body of the note."
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "The priority level of the note."
+        },
+        "date": {
+          "type": "string",
+          "description": "The scheduled date for the note (YYYY-MM-DD)."
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags associated with the note."
+        },
+        "whatsappStatus": {
+          "type": "string",
+          "enum": ["pending", "synced", "failed"],
+          "description": "Status of the WhatsApp notification sync."
+        },
+        "whatsappLastSent": {
+          "type": "string",
+          "description": "Timestamp when high-priority note was successfully sent."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO Timestamp when the note was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO Timestamp when the note was updated."
+        }
+      },
+      "required": ["userId", "title", "content", "priority", "date", "createdAt", "updatedAt"]
+    },
+    "WhatsAppConfig": {
+      "title": "WhatsAppConfig",
+      "description": "WhatsApp credentials for the user's Virtual Assistant notification integration.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Authentication UID of the owner."
+        },
+        "phoneNumberId": {
+          "type": "string",
+          "description": "WhatsApp Business API Phone Number ID."
+        },
+        "accessToken": {
+          "type": "string",
+          "description": "WhatsApp API Permanent Access Token."
+        },
+        "recipientNumber": {
+          "type": "string",
+          "description": "User's own phone number to receive messages (with country code)."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO Timestamp of last update."
+        }
+      },
+      "required": ["userId", "recipientNumber", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "notes/{noteId}": {
+      "schema": "Note",
+      "description": "Durable storage for user notes and tasks."
+    },
+    "whatsappConfigs/{configId}": {
+      "schema": "WhatsAppConfig",
+      "description": "Configurations for user-specific WhatsApp notification endpoints."
+    }
+  }
+}

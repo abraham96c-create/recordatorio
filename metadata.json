@@ -1,0 +1,6 @@
+{
+  "name": "Tu hijo favorito",
+  "description": "El asistente virtual más cariñoso para papá y mamá. Te hace preguntas inteligentes para organizar tus pendientes con la prioridad perfecta y enviarte recordatorios directos por WhatsApp.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
